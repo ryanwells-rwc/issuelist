@@ -1,0 +1,102 @@
+<div class="row">
+  <div class="col-md-6">
+    <a routerLink="/" href="#" class="btn btn-link">
+      <i class="fa fa-arrow-circle-o-left"></i> Back To Dashboard
+    </a>
+  </div>
+  <div class="col-md-6"></div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    Add Issue
+  </div>
+  <div class="card-body">
+    <form novalidate #f="ngForm" (ngSubmit)="onSubmit(f)">
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input 
+          type="text"
+          class="form-control"
+          [ngClass]="{'is-invalid':issueTitle.errors?.required && issueTitle.touched || issueTitle.errors?.minlength}"
+          [(ngModel)]="issue.title"
+          name="title"
+          #issueTitle = "ngModel"
+          minlength="2"
+          required
+        >
+        <div *ngIf="issueTitle.errors?.required && issueTitle.touched" class="invalid-feedback">
+          Title is required
+        </div>
+        <div *ngIf="issueTitle.errors?.minlength && issueTitle.touched" class="invalid-feedback">
+          Must be at least 2 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input 
+          type="text"
+          class="form-control"
+          [ngClass]="{'is-invalid':issueDescription.errors?.required && issueDescription.touched || issueDescription.errors?.minlength}"
+          [(ngModel)]="issue.description"
+          name="description"
+          #issueDescription = "ngModel"
+          minlength="2"
+          required
+        >
+        <div *ngIf="issueDescription.errors?.required && issueDescription.touched" class="invalid-feedback">
+          Description is required
+        </div>
+        <div *ngIf="issueDescription.errors?.minlength && issueDescription.touched" class="invalid-feedback">
+          Must be at least 2 characters
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="assignee">Assignee</label>
+        <input 
+          type="assignee"
+          class="form-control"
+          [ngClass]="{'is-invalid':issueAssignee.errors?.required && issueAssignee.touched}"
+          [(ngModel)]="issue.assignee"
+          name="assignee"
+          #issueAssignee ="ngModel"
+          required
+        >
+        <div *ngIf="issueAssignee.errors?.required && issueAssignee.touched" class="invalid-feedback">
+          Assignee is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="kind">Kind</label>
+        <input 
+          type="text"
+          class="form-control"
+          [ngClass]="{'is-invalid':issueKind.errors?.required && issueKind.touched}"
+          [(ngModel)]="issue.kind"
+          name="kind"
+          #issueKind = "ngModel"
+          required
+        >
+        <div *ngIf="issueKind.errors?.required && issueKind.touched" class="invalid-feedback">
+          Kind is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <input 
+          type="text"
+          class="form-control"
+          [(ngModel)]="issue.priority"
+          name="priority"
+          #clientBalance = "ngModel"
+        >
+      </div>
+
+      <input type="submit" value="Submit" class="btn btn-primary btn-block">
+    </form>
+  </div>
+</div>

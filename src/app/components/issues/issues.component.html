@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-6">
+    <h2><i class="fa fa-users"></i>Issues</h2>
+  </div>
+  <div class="col-md-6">
+  </div>
+</div>
+<table *ngIf="issues?.length > 0;else noIssues" class="table table-striped">
+  <thead class="thead-inverse">
+    <tr>
+      <th>Title</th>
+      <th>Assignee</th>
+      <th>Priority</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let issue of issues">
+      <td>{{issue.title}}</td>
+      <td>{{issue.assignee}}</td>
+      <td>{{issue.priority}}</td>
+      <td><a [routerLink]="['/issue/'+issue.key]" href="#" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i> Details</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #noIssues>
+  <hr>
+  <h5>There are no issues in the system</h5>
+</ng-template>
